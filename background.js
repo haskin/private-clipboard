@@ -19,6 +19,8 @@ chrome.runtime.onStartup.addListener(function() {
   chrome.storage.local.clear();
 });
 
+const TEMP_CLIP_KEY = "tempClipKey";
+chrome.storage.sync.set({TEMP_CLIP_KEY: []});
 
 /* browser.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   if (request.event == "copy") {
