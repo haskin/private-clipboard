@@ -13,7 +13,13 @@ temp_storage();
 function deleteButtonOnClickHandler(event){
   /*Gets the index from the span element that is in 
   /the copy container with the delete button.*/
-  const index = event.path[1].children[0].innerHTML;
+  const deleteIndex = event.path[1].children[0].innerHTML - 1;
+  chrome.storage.sync.get("tempClipKey", (object) => {
+    oldClipBoard = object.tempClipKey;
+    //Filter based on index.
+    newClipBoard = oldClipBoard.filter((copy, index) => index != deleteIndex);
+    chrome.storage.sync.set({"tempClipKey": newClipBoard});
+  });
 }
 
 console.log("about to sync");
