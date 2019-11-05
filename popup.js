@@ -10,6 +10,24 @@ function temp_storage(){
 }
 temp_storage();
 
+function copyButtonOnClickHandler(event){
+  let range = document.createRange();
+
+  //Clears any selections(highligthed) elements.
+  let selection = window.getSelection();
+  selection.removeAllRanges();
+
+  //Adds copyContainer__content to range.
+  range.selectNode(event.path[1].children[1]);
+
+  // Add that range to the selection.
+  selection.addRange(range);
+  document.execCommand("copy"); 
+
+  //Clears the selections so it's not highlighted.
+  selection.removeAllRanges();
+}
+
 function deleteButtonOnClickHandler(event){
   /*Gets the index from the span element that is in 
   /the copy container with the delete button.*/
@@ -27,21 +45,38 @@ chrome.storage.sync.get("tempClipKey", (object) => {
   clipboard = object.tempClipKey;
   clipboard.forEach((copy, index) => {
     console.log(index);
+
+    //Container for each copy
     const container = document.createElement("div");
     container.className = "copyContainer"
+
+    //Ordinal Number
     const ordinal = document.createElement("span")
     ordinal.className = "copyContainer__ordinal"
     ordinal.innerHTML = index + 1;
+
+    //Content node element
     const node = document.createElement("li"); // Create a <li> node
     node.innerHTML = copy;
     node.className = "copyContainer__content";
+
+    //Copy Button
+    const copyButton = document.createElement("button");
+    copyButton.className = "copyContainer__copy";
+    copyButton.innerHTML = "copy";
+    copyButton.onclick = copyButtonOnClickHandler;
+
+    //Delete Button
     const deleteButton = document.createElement("button");
     deleteButton.className = "copyContainer__delete";
     deleteButton.innerHTML = "delete";
     deleteButton.onclick = deleteButtonOnClickHandler;
+
+    //Append everthing to container and then to document
     container.appendChild(ordinal);
     container.appendChild(node);
     container.appendChild(deleteButton);
+    container.appendChild(copyButton);
     document.getElementById("items").appendChild(container); ///append Item
   }); 
 });
