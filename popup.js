@@ -10,19 +10,30 @@ function temp_storage(){
 }
 temp_storage();
 
+function deleteButtonOnClickHandler(event){
+  /*Gets the index from the span element that is in 
+  /the copy container with the delete button.*/
+  const index = event.path[1].children[0].innerHTML;
+}
+
 console.log("about to sync");
 chrome.storage.sync.get("tempClipKey", (object) => {
-    clipboard = object.tempClipKey;
-    clipboard.forEach((copy) => {
+  clipboard = object.tempClipKey;
+  clipboard.forEach((copy, index) => {
+    console.log(index);
     const container = document.createElement("div");
     container.className = "copyContainer"
-    console.log(container);
+    const ordinal = document.createElement("span")
+    ordinal.className = "copyContainer__ordinal"
+    ordinal.innerHTML = index + 1;
     const node = document.createElement("li"); // Create a <li> node
     node.innerHTML = copy;
     node.className = "copyContainer__content";
     const deleteButton = document.createElement("button");
     deleteButton.className = "copyContainer__delete";
     deleteButton.innerHTML = "delete";
+    deleteButton.onclick = deleteButtonOnClickHandler;
+    container.appendChild(ordinal);
     container.appendChild(node);
     container.appendChild(deleteButton);
     document.getElementById("items").appendChild(container); ///append Item

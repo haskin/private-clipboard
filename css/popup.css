@@ -1,6 +1,10 @@
 .copyContainer{
     padding-bottom: 5px;
 }
+
+.copyContainer__ordinal{
+    margin-right: 4px;
+}
 .copyContainer__content{
     display:inline;
 }
