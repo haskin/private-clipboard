@@ -1,0 +1,11 @@
+.copyContainer{
+    padding-bottom: 5px;
+}
+.copyContainer__content{
+    display:inline;
+}
+
+.copyContainer__delete{
+    padding:0;
+    float:right;
+}
