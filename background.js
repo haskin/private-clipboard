@@ -17,12 +17,28 @@ chrome.runtime.onInstalled.addListener(function() {
 
 chrome.runtime.onInstalled.addListener(function() {
   chrome.storage.local.set({"tempClipKey": []});
+  chrome.tabs.query({"status":"complete"}, (tabs) => {
+    tabs.forEach((tab) => {
+      //Excludes chrome tabs including "chrome://extensions/"
+      if(tab.url.substring(0,9) != "chrome://"){
+        chrome.tabs.executeScript(tab.id, {file: "onCopy.js"});
+      }
+    });
+  });
 });
 
 
 chrome.runtime.onStartup.addListener(function() {
   // chrome.storage.local.clear();
   chrome.storage.local.set({"tempClipKey": []});
+  chrome.tabs.query({"status":"complete"}, (tabs) => {
+    tabs.forEach((tab) => {
+      //Excludes chrome tabs including "chrome://extensions/"
+      if(tab.url.substring(0,9) != "chrome://"){
+        chrome.tabs.executeScript(tab.id, {file: "onCopy.js"});
+      }
+    });
+  });
 });
 
 // const TEMP_CLIP_KEY = "tempClipKey";

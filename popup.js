@@ -83,7 +83,6 @@ function deleteButtonOnClickHandler(event){
   chrome.storage.local.get("tempClipKey", (object) => {
    
     oldClipBoard = object.tempClipKey;
-    console.log(oldClipBoard);
     //Filter based on index.
     newClipBoard = oldClipBoard.filter((copy, index) => index != deleteIndex);
     chrome.storage.local.set({"tempClipKey": newClipBoard});
