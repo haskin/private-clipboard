@@ -21,7 +21,9 @@ chrome.runtime.onInstalled.addListener(function() {
     tabs.forEach((tab) => {
       //Excludes chrome tabs including "chrome://extensions/"
       if(tab.url.substring(0,9) != "chrome://"){
-        chrome.tabs.executeScript(tab.id, {file: "onCopy.js"});
+        chrome.tabs.executeScript(tab.id, {file: "onCopy.js"}, function(result) {
+          // Process |result| here (or maybe do nothing at all).
+        });
       }
     });
   });
@@ -35,7 +37,9 @@ chrome.runtime.onStartup.addListener(function() {
     tabs.forEach((tab) => {
       //Excludes chrome tabs including "chrome://extensions/"
       if(tab.url.substring(0,9) != "chrome://"){
-        chrome.tabs.executeScript(tab.id, {file: "onCopy.js"});
+        chrome.tabs.executeScript(tab.id, {file: "onCopy.js"}, function(result) {
+          // Process |result| here (or maybe do nothing at all).
+        });
       }
     });
   });
