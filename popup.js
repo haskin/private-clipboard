@@ -40,13 +40,13 @@ function setPopUp() {
       //Copy Button
       const copyButton = document.createElement("button");
       copyButton.className = "copyContainer__copy";
-      copyButton.innerHTML = "copy";
+      copyButton.innerHTML = "Copy";
       copyButton.onclick = copyButtonOnClickHandler;
   
       //Delete Button
       const deleteButton = document.createElement("button");
       deleteButton.className = "copyContainer__delete";
-      deleteButton.innerHTML = "delete";
+      deleteButton.innerHTML = "Delete";
       deleteButton.onclick = deleteButtonOnClickHandler;
   
       //Append everthing to container and then to document
