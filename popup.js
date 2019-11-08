@@ -18,17 +18,19 @@ function setPopUp() {
     
     clipboard = (object.tempClipKey) || [];
     console.log(clipboard);
-    clipboard.forEach((copy, index) => {
+    // clipboard.reverse().forEach((copy, index) => {
+    clipboard.reverse().forEach((copy, index) => {
       console.log(index);
   
       //Container for each copy
       const container = document.createElement("div");
       container.className = "copyContainer"
   
-      //Ordinal Number
+      // Ordinal Number
       const ordinal = document.createElement("span")
       ordinal.className = "copyContainer__ordinal"
       ordinal.innerHTML = index + 1;
+      ordinal.style.visibility = "hidden";
   
       //Content node element
       const node = document.createElement("li"); // Create a <li> node
@@ -49,9 +51,11 @@ function setPopUp() {
   
       //Append everthing to container and then to document
       container.appendChild(ordinal);
+      const line = document.createElement("HR"); 
       container.appendChild(node);
-      container.appendChild(deleteButton);
       container.appendChild(copyButton);
+      container.appendChild(deleteButton);
+      container.appendChild(line);
       document.querySelector(".copiesContainer").appendChild(container); ///append Item
     }); 
   });
@@ -84,7 +88,7 @@ function deleteButtonOnClickHandler(event){
    
     oldClipBoard = object.tempClipKey;
     //Filter based on index.
-    newClipBoard = oldClipBoard.filter((copy, index) => index != deleteIndex);
+    newClipBoard = oldClipBoard.reverse().filter((copy, index) => index != deleteIndex);
     chrome.storage.local.set({"tempClipKey": newClipBoard});
     setPopUp()
   });

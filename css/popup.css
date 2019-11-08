@@ -1,5 +1,29 @@
-.copyContainer{
+body{
+    width:275px;
+}
+#popupHeader{
     padding-bottom: 5px;
+}
+
+.logoImage{
+    /* position:absolute; */
+    display:inline;
+    height: 24px;
+    width: 24px;
+}
+.logoName {
+    display:inline;
+    vertical-align:text-bottom;
+    font-size: 24px;
+    /* border: 5px solid red; */
+}
+
+.copyContainer{
+    display:flex;
+    align-items: flex-start;
+    flex-wrap:wrap;
+    /* padding-top: 5px; */
+    /* padding-bottom: 5px; */
 }
 
 .copyContainer__ordinal{
@@ -7,6 +31,7 @@
 }
 .copyContainer__content{
     display:inline;
+    flex:1;
 }
 
 .copyContainer__delete{
@@ -19,3 +44,10 @@
     float:right;
 }
 
+hr{
+    /* width: 100%;
+    justify-content: center;
+    color:black;
+    border: 1px solid black; */
+    width:100%;
+}
