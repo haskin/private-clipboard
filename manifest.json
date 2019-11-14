@@ -1,5 +1,6 @@
 {
     "name": "Private Clipboard",
+    "description":"Clipboard extension that doesn't collect your data.",
     "version": "1.0",
     "icons":{
         "16": "./icons/icon.png",
